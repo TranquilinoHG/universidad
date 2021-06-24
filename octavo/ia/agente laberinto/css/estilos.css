@@ -1,0 +1,16 @@
+﻿.padre
+{
+display:flex;
+justify-content:center;
+padding:20px;
+}
+.pun{
+	padding:20px;
+}
+.botones{
+	padding:20px;
+}
+
+.hora{
+	padding:20px;
+}
