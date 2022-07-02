@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body
+        {
+            background: rgb(197, 187, 187);
+        }
+        </style>    
+  </head>
+
+  <body>
+      
+        <nav class="cyan">
+        <div class="nav-wrapper">
+            <div class=" row s3">
+            <a href="#" class="brand-logo" style="color: rgb(255, 255, 255);" >PDI</a>
+            </div>   
+        </div>
+        </nav>
+      <div class="container section z-depth-1">
+        <div class="row ">
+            <div class="col s3 l3 z-depth-5 " >
+            <!-- Grey navigation panel -->
+                <div class="file-field input-field">
+                    <div class="btn ">
+                        <span class="truncate">Subir imagen</span>
+                        <input type="file" id="imagen1" accept=".jpg,.jpeg,.png" multiple>
+                    </div>
+                    <div class="file-path-wrapper ">
+                        <input class="file-path validate " type="text">
+                    </div>
+                </div>
+                <div class="row z-depth-1 section ">
+                    <div class="col s12  center-align">
+                        <div id="boxColor" class=" z-depth-1" style="background-color: rgb(128, 128, 128); color: black;">255,255,255 rgb</div>
+                        <form id="coloresBarra" action="#">
+                            <p class="range-field " style="margin-top: 0px; margin-bottom: 0px;">
+                            <input type="range" id="rangeR" min="0" max="255" />
+                            </p>
+                            <p class="range-field"  style="margin-top: 0px; margin-bottom: 0px;">
+                            <input type="range" id="rangeG" min="0" max="255" />
+                            </p>
+                            <p class="range-field"  style="margin-top: 0px; margin-bottom: 0px;">
+                            <input type="range" id="rangeB" min="0" max="255" />
+                            </p>
+                        </form>
+                    </div>
+                    <div class="col s7 center-align"><span>SEGMENTACION</span></div>
+                    <div class="col s5">
+                        <a id="btn-segmentacion" class="waves-effect waves-light btn-small" onclick="aplicarSegmentacion(); return false;">Aplicar</a>
+                    </div>
+                    <div class="col s4 center-align"><span>Tipo</span></div>
+                    <div class="switch col s8 ">
+                        <label>
+                            Esferico
+                            <input  type="checkbox" id="tipoSegmentacion">
+                            <span class="lever"  ></span>
+                            Cubico
+                        </label>
+                    </div>
+                    <div class="col s4"><span>Margen</span></div>
+                    <div class="col s8 center">
+                        <form action="#">
+                            <p class="range-field " style="
+                            margin-top: 0px;
+                            margin-bottom: 0px;">
+                            <input type="range" id="rangeMargen" min="1" max="255" step="1" />
+                            </p>
+                        </form>    
+                    </div>  
+                </div>
+                
+
+         
+                <!--seccion Algortmos-->
+                    <div class="row z-depth-1  section ">
+                        <div class=" col s8 "> 
+                            <div class="input-field">
+                                <select  id="numAlgoritmo" >
+                                  <option value="" disabled selected >Ninguno</option>
+                                  <!--<option value="8">Todos</option>-->
+                                  <option value="1">Dilatacion</option>
+                                  <option value="2">Erosion</option>
+                                  <option value="3">Perimetro</option>
+                                  <option value="4">Relleno</option>
+                                  <option value="5">Limpieza</option>
+                                  <option value="6">Union</option>
+                                  <option value="7">Esqueletizacion</option>
+                                  
+                                </select>
+                                <label>Escoje el algoritmo</label>
+                              </div>
+
+                        </div>
+                        <div class="col s4">
+                            <a class="waves-effect waves-light btn-small" onclick="aplicarAlgoritmo(); return false;">Aplicar</a>
+                        </div>
+                        <div class="input-field col s12 center-align">
+                            <input id="tamMatriz" type="text" class="validate">
+                            <label for="icon_prefix">Tamaño</label>
+                        </div>
+                        <div class="switch col s12 center-align">
+                            <label>
+                                Matriz
+                                <input id="tipoMatriz" type="checkbox">
+                                <span class="lever"></span>
+                                cruz
+                            </label>
+                        </div>
+                    </div>
+                <div class=" row">
+                    <a class="waves-effect waves-light btn modal-trigger red darken-3 col s3 center-align" href="#modal1">??</a>
+                </div>
+                   
+                
+            </div>
+            <div class="col s9 l9 teal lighten-3">
+            <!-- Teal page content  -->
+                <div class="row section">
+                    <div id="contenedorImagenA" class="col s12 m6 l6 " >
+                        <h5>Imagen original</h5>
+                        <img id="imagenO" data-caption="La imagen original sin modificaciones" class="z-depth-3 materialboxed responsive-img" src="">
+                     </div>
+                     <div id="contenedorImagenR" class="col s12 m6 l6 ">
+                        <h5>Imagen modificada</h5>
+                        <img id="imagenM" class="z-depth-5 materialboxed responsive-img" data-caption="Esto es lo que resultada desues de aplicar los algoritmos" src="">
+                    </div>
+                </div>
+                <div>
+                    <canvas id="canvasImagen1" style="display:none" class="z-depth-5" ></canvas>
+                    <div id="divCanvasModificado" style="display:none" >
+                        <h5>Da click en un pixel</h5>
+                        <canvas id="canvasModificado" class="z-depth-5" ></canvas>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <!-- Modal Trigger -->
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+            <h4>PROYECTO PARA EL TERCER PARCIAL DE PROCESAMIENTO DIGITAL DE IMAGENES</h4>
+            <p>Instrucciones </br> 1.- Escojer un imagen con el boton "subir imagen".
+                </br> 2. Escojer el color con la cual desea segmentar. 
+                </br> 3. Aplicar la segmentacion con el boton "aplicar" que se encuentra a lado del texto segmentacion.
+                </br> 4. Observara que su imagen se ha segmentado con escala de grises y se encontrara a lado de su imagen original.
+                </br> 5. Ahora podra aplicar el algoritmo que guste. 
+            </p>
+            <p>Proyecto realizado por el alumno Tranquilino Hernandez Garcia. 902-A</p>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+            </div>
+        </div>
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <div class="card-panel grey lighten-5 z-depth-1">
+              <div class="row valign-wrapper">
+                <div class="col s2">
+                  <img src="images/AdaLovelace.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+                  <span class="black-text">
+                    This is a square image. Add the "circle" class to it to make it appear circular.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>M.AutoInit();</script>
+  </body>
+</html>
+      
