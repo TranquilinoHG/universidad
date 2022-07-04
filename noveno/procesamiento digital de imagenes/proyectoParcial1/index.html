@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       <meta charset="UTF-8"/>
+        <style>
+            body
+            {
+                background: rgb(197, 187, 187);
+            }
+            #main
+            {
+                margin-top: 100px;
+                text-align: center;
+            }
+            #canvas
+            {
+                background-color: white;
+                height: 600px;
+                width: 800px;
+            }
+            canvas.myid_templates_editor_canvas
+            {
+                width: auto;
+                margin: auto;
+                display: block;
+                background-color: white;
+            }
+
+        </style>
+    </head>
+    <body>
+    <nav class="blue">
+    <div class="nav-wrapper" >
+      <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+      <a href="#" class="brand-logo" >PDI</a>
+      <ul class="side-nav blue darken-2" id="mobile-demo">
+        <li class="sidenav-header blue">
+          <div class="row">
+            <div class="col s4">
+                <img src="pikachu.jpg" width="59px" height="59px" alt="" class="circle responsive-img valign profile-image">
+            </div>
+            <div class="col s8">
+                <a class="btn-flat dropdown-button waves-effect waves-light white-text"  data-activates="profile-dropdown">Menu<i class="mdi-navigation-arrow-drop-down right"></i></a>
+            </div>
+          </div>
+        </li>
+        <li class="blue">
+          <ul class="collapsible collapsible-accordion">
+              <li>
+                <a class="collapsible-header white-text waves-effect waves-blue "><i class="material-icons white-text ">panorama</i>Imágenes <i class="material-icons right white-text" style="margin-right:0;">arrow_drop_down</i></a>
+                <div class="collapsible-body z-depth-3">
+                  <ul>
+                    <li>
+                        <a class="waves-effect waves-blue" href="#">
+                             <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Imagen 1</span>
+                                    <input type="file" id="imagen1" accept=".jpg,.jpeg,.png" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-blue" href="#">
+                             <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Imagen 2</span>
+                                    <input type="file" id="imagen2" accept=".jpg,.jpeg,.png">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+
+                        </a>
+                    </li>
+                    <li><div class="divider"></div></li>
+                  </ul>
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- primer parcial-->
+        <li class="orange">
+        <ul class="collapsible collapsible-accordion">
+        <li>
+        <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">filter_1</i>Primer Parcial<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+        <div class="collapsible-body">
+        <ul>
+        <!-- -->
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Separar colores<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="colorR();return false;"><i class="material-icons">fullscreen</i>Rojo</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="colorG();return false;"><i class="material-icons">fullscreen</i>Verde</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="colorB();return false;"><i class="material-icons">fullscreen</i>Azul</a></li>
+
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Básicos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="imgAGrisFuncion();return false;"><i class="material-icons">fullscreen</i>Escala de grises</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="imgNegativoFuncion();return false;"><i class="material-icons">fullscreen</i>Negativo</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Operadores lógicos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="funcionAnd();return false;"><i class="material-icons">fullscreen</i>AND</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="funcionOR();return false;"><i class="material-icons">fullscreen</i>OR</a></li>
+
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Colorear imagen gris<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="colorearFuncion();return false;"><i class="material-icons">swap_horiz</i>Colorear imagen </a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="selectFuncion();return false;"><i class="material-icons">swap_vert</i>Seleccionar area</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="gradianteFuncion();return false;"><i class="material-icons">swap_vert</i>Gradiante</a></li>
+
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Bordes con imagen gris<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="bordesHFuncion();return false;"><i class="material-icons">swap_horiz</i>Bordes Horizontales</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="bordesVFuncion();return false;"><i class="material-icons">swap_vert</i>Bordes Verticales</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="bordesDFuncion();return false;"><i class="material-icons">swap_vert</i>Bordes diagonales</a></li>
+                    <li><a class="waves-effect waves-blue" href="#" onclick="bordesTFuncion();return false;"><i class="material-icons">fullscreen</i>Todos los anteriores</a></li>
+
+                  </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Bordes con imagen a color<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="bordesCHFuncion();return false;"><i class="material-icons">swap_horiz</i>Bordes Horizontales color</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="bordesCVFuncion();return false;"><i class="material-icons">swap_vert</i>Bordes Verticales color </a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="bordesCDFuncion();return false;"><i class="material-icons">swap_vert</i>Bordes diagonales color</a></li>
+                    <li><a class="waves-effect waves-blue" href="#" onclick="bordesCTFuncion();return false;"><i class="material-icons">fullscreen</i>Todos los anteriores</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Histograma<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="HistogramaGris();return false;"><i class="material-icons">fullscreen</i>A escala de grises</a></li>
+                    <li><a class="waves-effect waves-blue"  href="#" onclick="HistogramaColor();return false;"><i class="material-icons">fullscreen</i>A color</a></li>
+
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+      </div>
+      </li>
+      </ul>
+      </li>
+      <!-- segundo parcial-->
+      <li class="brown lighten-1">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">filter_2</i>Segundo Parcial<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+            <ul>
+              <!-- -->
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_special</i>Suma o Resta<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                          <li><a class="waves-effect waves-blue"  href="#" onclick="suma(1);return false;"><i class="material-icons">add</i>Operacion suma</a></li>
+                          <li><a class="waves-effect waves-blue"  href="#" onclick="suma(-1);return false;"><i class="material-icons">remove</i>Operacion resta</a></li>
+
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">grid_on</i>Filtro manual<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                          <li><a class="waves-effect waves-blue"  href="#" >
+                              <i class="material-icons">fullscreen</i>Convulucion</a>
+                              <input placeholder="ejemplo filtro: 0,-1,0,0,1,0,0,0,0" id="matrizEntrada" type="text" class="validate" style="color: black;"  minlength="1">
+                              <a class="waves-effect waves-light btn" onclick="matricesFuncion();return false;">start</a>
+                          </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">grid_on</i>Filtro pasa bajas<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                          <li><a class="waves-effect waves-blue"  href="#" onclick="pasaBaja(1);return false;">
+                              <i class="material-icons">fullscreen</i>[0 1 0 1 2 1 0 1 0]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#"onclick="pasaBaja(2);return false;" >
+                              <i class="material-icons">fullscreen</i>[1 1 1 1 1 1 1 1 1]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#"onclick="pasaBaja(3);return false;" >
+                              <i class="material-icons">fullscreen</i>[1 1 1 1 2 1 1 1 1]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#"onclick="pasaBaja(4);return false;" >
+                              <i class="material-icons">fullscreen</i>[1 2 1 2 4 2 1 2 1]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#" onclick="pasaBaja(5);return false;">
+                              <i class="material-icons">fullscreen</i>[1 4 1 4 12 4 1 4 1]</a>
+                          </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">grid_on</i>Filtro pasa altas<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                          <li><a class="waves-effect waves-blue"  href="#" onclick="pasaAlta(1);return false;">
+                              <i class="material-icons">fullscreen</i>[ 0 -1  0 -1  5 -1  0 -1  0]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#" href="#" onclick="pasaAlta(2);return false;">
+                              <i class="material-icons">fullscreen</i>[-1 -1 -1 -1  9 -1 -1 -1 -1]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#" href="#" onclick="pasaAlta(3);return false;">
+                              <i class="material-icons">fullscreen</i>[ 1 -2  1 -2  5 -2  1 -2  1]</a>
+                          </li>
+
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">grid_on</i>Convuluciones Ejemplos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                          <li><a class="waves-effect waves-blue"  href="#" onclick="filtrosBordes(1);return false;">
+                              <i class="material-icons">fullscreen</i>Faller: [-1 0 1 -1 0 1 -1 0 1]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#" href="#" onclick="filtrosBordes(2);return false;">
+                              <i class="material-icons">fullscreen</i>Kirsch: [5 5 5 -3 0 -3 -3 -3 -3]</a>
+                          </li>
+                          <li><a class="waves-effect waves-blue"  href="#" href="#" onclick="filtrosBordes(3);return false;">
+                              <i class="material-icons">fullscreen</i>Prewit: [1 1 1 1 -2 1 -1 -1 -1]</a>
+                          </li>
+
+                          <li><a class="waves-effect waves-blue"  href="#" href="#" onclick="filtrosBordes(4);return false;">
+                              <i class="material-icons">fullscreen</i>Sobel: [1 2 1 0 0 0 -1 -2 -1]</a>
+                          </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">crop_rotate</i>Rotaciones<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                          <li><a class="waves-effect waves-blue"  href="#" >
+                              <i class="material-icons">fullscreen</i>Rotar</a>
+                              <input placeholder="ejemplo: 45.0" id="gradoEntrada" type="text" class="validate" style="color: black;"  minlength="1">
+                              <a class="waves-effect waves-light btn" onclick="rotarFuncion();return false;">start</a>
+                          </li>
+
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">select_all</i>Reducir<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                        <input placeholder="ejemplo: 3 " id="vecesReducir" type="text" class="validate" style="color: black;"  minlength="1">
+                          <a class="waves-effect waves-light btn" onclick="Reducir();return false;">start</a>
+                        
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="white">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">zoom_out_map</i>Aumentar<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                              <input placeholder="ejemplo: 3 " id="vecesAumentar" type="text" class="validate" style="color: black;"  minlength="1">
+                              <a class="waves-effect waves-light btn" onclick="Aumentar();return false;">start</a>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            </div>
+          </li>
+        </ul>
+      </li>  
+        <!-- #region termina el segundo parcial-->
+      <!-- aqui empieza el tercer parcial-->
+      <li class="red lighten-1">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">filter_3</i>Tercer Parcial<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+            <ul>
+              <li><a class="waves-effect waves-blue"  href="#" onclick="segmentacion();return false;">
+                <i class="material-icons">fullscreen</i>segmentacion</a>
+            </li>
+            </ul>
+            </div>
+          </li>
+        </ul>
+      </li>  
+
+      <!--Aqui termina el tercer parcial-->
+      <li class="white">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">palette</i>Colores<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <a class="waves-effect waves-blue" href="#">
+                          <input type="color" id="colorpicker1" value="#000000">
+                  </a>
+              </li>
+                <li>
+                  <a class="waves-effect waves-blue" href="#">
+                          <input type="color" id="colorpicker2" value="#ffffff">
+                  </a>
+                  </a>
+              </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+
+      </ul>
+
+    </div>
+  </nav>
+  <table>
+    <tr>
+        <td>
+            <div id="main">
+                <h5 id="texto1"  style="color: white;">Escoje una imagen</h5>
+                <canvas id="canvasImagen1" class="z-depth-5" ></canvas>
+            </div>
+        </td>
+        <td>
+            <div id="main">
+                <h5 id="texto2" style="color: white;">Escoje una imagen 2</h5>
+                <canvas id="canvasImagen2" class="z-depth-5"></canvas>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="main">
+                <h5 id="texto3" style="color: white;"> </h5>
+                <canvas id="canvasImagen3" class="z-depth-5" ></canvas>
+            </div>
+        </td>
+        <td>
+            <div id="main">
+              <h5 id="texto4" style="color: white;"> </h5>
+                <canvas id="canvasImagen4" class="z-depth-5"  ></canvas><!-- class="myid_templates_editor_canvas" -->
+            </div>
+        </td>
+    </tr>
+
+
+  </table>
+  <script>
+    var R1=0,G1=0,B1=0;
+    var R2=0,G2=0,B2=0;
+
+ 
+    var canvas1 = document.getElementById('canvasImagen1');
+    var canvas2 = document.getElementById('canvasImagen2');
+    var canvas3 = document.getElementById('canvasImagen3');
+    var canvas4 = document.getElementById('canvasImagen4');
+    var ctx1= canvas1.getContext('2d');
+    var ctx2= canvas2.getContext('2d');
+    var ctx3= canvas3.getContext('2d');
+    var ctx4= canvas4.getContext('2d');
+
+    var letra1 = document.getElementById('texto1');
+    var letra2 = document.getElementById('texto2');
+    var letra3 = document.getElementById('texto3');
+    var letra4 = document.getElementById('texto4');
+
+    var matrizEntrada = document.getElementById('matrizEntrada');
+
+    var imagen1 = document.getElementById('imagen1');
+    var imagen2 = document.getElementById('imagen2');
+    imagen1.addEventListener('change', updateImage1);
+    imagen2.addEventListener('change', updateImage2);
+
+    var color1 = document.getElementById('colorpicker1');
+    color1.addEventListener('change', updateColor1);
+    var color2 = document.getElementById('colorpicker2');
+    color2.addEventListener('change', updateColor2);
+    //funciones para acualizar las imagenes
+            function letra(letra)
+            {
+                if(letra=='0')
+                    return 0;
+                if(letra=='1')
+                    return 1;
+                if(letra=='2')
+                    return 2;
+                if(letra=='3')
+                    return 3;
+                if(letra=='4')
+                    return 4;
+                if(letra=='5')
+                    return 5;
+                if(letra=='6')
+                    return 6;
+                if(letra=='7')
+                    return 7;
+                if(letra=='8')
+                    return 8;
+                if(letra=='9')
+                    return 9;
+                if(letra=='a')
+                    return 10;
+                if(letra=='b')
+                    return 11;
+                if(letra=='c')
+                    return 12;
+                if(letra=='d')
+                    return 13;
+                if(letra=='e')
+                    return 14;
+                if(letra=='f')
+                    return 15;
+            }
+        function updateImage1()
+        {
+          var image1 = new Image();
+          var image2 = new Image();
+          var image3 = new Image();
+          var image4 = new Image();
+
+          console.log("entro a la funcion para actualizar a image1")
+            var curFile = imagen1.files;
+            source = curFile[0].name;
+            if(validFileType(curFile[0]))
+            {
+                console.log("la imagen es valida")
+                source = curFile[0].name;
+                image1.src = window.URL.createObjectURL(curFile[0]);
+                image1.onload = function()
+                {
+                    canvas1.width  = image1.width;
+                    canvas1.height = image1.height;
+                    ctx1.drawImage(image1, 0, 0);
+                    console.log("termino de pintar la imagen")
+                }
+            }
+            letra1.innerHTML = "IMAGEN ORIGINAL 1";
+        }
+        function updateImage2()
+        {
+          var image1 = new Image();
+          var image2 = new Image();
+          var image3 = new Image();
+          var image4 = new Image();
+            var curFile = imagen2.files;
+            source = curFile[0].name;
+            if(validFileType(curFile[0]))
+            {
+                source = curFile[0].name;
+                image2.src = window.URL.createObjectURL(curFile[0]);
+                image2.onload = function()
+                {
+                    canvas2.width =  image2.width;
+                    canvas2.height = image2.height;
+                    ctx2.drawImage(image2, 0, 0);
+                }
+                letra2.innerHTML = "IMAGEN ORIGINAL 2";
+            }
+        }
+        //fuionces para actualizar los colores
+        function updateColor1(event)
+        {
+            R1=16*letra(event.target.value[1])+letra(event.target.value[2]);
+            G1=16*letra(event.target.value[3])+letra(event.target.value[4]);
+            B1=16*letra(event.target.value[5])+letra(event.target.value[6]);
+        }
+        function updateColor2(event)
+        {
+            R2=16*letra(event.target.value[1])+letra(event.target.value[2]);
+            G2=16*letra(event.target.value[3])+letra(event.target.value[4]);
+            B2=16*letra(event.target.value[5])+letra(event.target.value[6]);
+            console.log("r2",R2)
+            console.log("r2",G2)
+            console.log("r2",B2)
+
+        }
+
+        var fileTypes = [
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png'
+        ]
+        function validFileType(file)
+        {
+            for(var i = 0; i < fileTypes.length; i++)
+            {
+                if(file.type === fileTypes[i])
+                    return true;
+            }
+        }
+        function imgAGrisFuncion(){
+            image2 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            pixels = image2.data;
+            numPixels = image2.width * image2.height;
+            for ( var i = 0; i < numPixels; i++ )
+            {
+                var r = pixels[ i * 4 + 0 ];
+                var g = pixels[ i * 4 + 1 ];
+                var b = pixels[ i * 4 + 2 ];
+                var gris = Math.round(( r + g + b ) / 3);
+                pixels[ i * 4 + 0 ] = gris;
+                pixels[ i * 4 + 1 ] = gris;
+                pixels[ i * 4 + 2 ] = gris;
+            }
+            canvas2.width =  image2.width;
+            canvas2.height = image2.height;
+            ctx2.putImageData( image2, 0, 0 );
+            letra2.innerHTML = "escala de grises";
+
+        }
+        function imgNegativoFuncion(){
+            image2 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            pixels = image2.data;
+            numPixels = image2.width * image2.height;
+            for ( var i = 0; i < numPixels; i++ )
+            {
+                var r = pixels[ i * 4 + 0 ];
+                var g = pixels[ i * 4 + 1 ];
+                var b = pixels[ i * 4 + 2 ];
+                var gris = Math.round(( r + g + b ) / 3);//
+                pixels[ i * 4 + 0 ] = gris;
+                pixels[ i * 4 + 1 ] = gris;
+                pixels[ i * 4 + 2 ] = gris;
+            }
+            canvas2.width =  image2.width;
+            canvas2.height = image2.height;
+            ctx2.putImageData( image2, 0, 0 );
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            image2 = ctx2.getImageData( 0, 0, canvas2.width, canvas2.height );
+
+            pixels = image1.data;
+            pixelsRes = image2.data;
+            for ( var y = 0; y < image2.height; y++ )
+            {
+                for ( var x = 0; x < image2.width; x++ )
+                {
+                    pixelsRes[y*image2.width*4 + x*4 +0] = 255-pixels[y*image2.width*4 + (x)*4 +0]
+                    pixelsRes[y*image2.width*4 + x*4 +1] = 255-pixels[y*image2.width*4 + (x)*4 +1]
+                    pixelsRes[y*image2.width*4 + x*4 +2] = 225-pixels[y*image2.width*4 + (x)*4 +2]
+
+                }
+            }
+            canvas2.width =  image1.width;
+            canvas2.height = image1.height;
+            ctx2.putImageData( image2, 0, 0 );
+            letra2.innerHTML = "Negativo";
+
+        }
+        function bordesVFuncion()
+        {
+            imgAGrisFuncion();
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            image2 = ctx2.getImageData( 0, 0, canvas2.width, canvas2.height );
+            image4 = ctx2.getImageData( 0, 0, canvas1.width, canvas1.height );
+
+            pixels = image2.data;
+            pixelsRes = image4.data;
+            for ( var y = 0; y < image2.height; y++ )
+            {
+                for ( var x = 0; x < image2.width-1; x++ )
+                {
+                    var r = Math.abs(pixels[y*image2.width*4 + (x)*4 +0]-pixels[y*image2.width*4 + (x+1)*4 +0]);
+                    var g = Math.abs(pixels[y*image2.width*4 + (x)*4 +1]-pixels[y*image2.width*4 + (x+1)*4 +1]);
+                    var b = Math.abs(pixels[y*image2.width*4 + (x)*4 +2]-pixels[y*image2.width*4 + (x+1)*4 +2]);
+                         pixelsRes[y*image2.width*4 + x*4 +0] = r;
+                         pixelsRes[y*image2.width*4 + x*4 +1] = g;
+                         pixelsRes[y*image2.width*4 + x*4 +2] = b;
+                }
+            }
+            canvas4.width =  image4.width;
+            canvas4.height = image4.height;
+            ctx4.putImageData( image4, 0, 0 );
+            letra4.innerHTML = "Bordes verticales";
+
+        }
+        //algoritmo para las lineanas horizontales
+        function bordesHFuncion()
+        {
+
+            imgAGrisFuncion();
+            image1 = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
+            image2 = ctx2.getImageData(0, 0, canvas2.width, canvas2.height);
+            image4 = ctx2.getImageData(0, 0, canvas1.width, canvas1.height);
+
+            pixels = image2.data;
+            pixelsRes = image4.data;
+            for ( var y = 0; y < image2.height-1; y++ )
+            {
+
+                for ( var x = 0; x < image2.width; x++ )
+                {
+                    var r = Math.abs(pixels[y*image2.width*4 + x*4 +0]-pixels[(y+1)*image2.width*4 + (x)*4 +0]);
+                    var g = Math.abs(pixels[y*image2.width*4 + x*4 +1]-pixels[(y+1)*image2.width*4 + (x)*4 +1]);
+                    var b = Math.abs(pixels[y*image2.width*4 + x*4 +2]-pixels[(y+1)*image2.width*4 + (x)*4 +2]);
+                         pixelsRes[y*image2.width*4 + x*4 +0] = r;
+                         pixelsRes[y*image2.width*4 + x*4 +1] = g;
+                         pixelsRes[y*image2.width*4 + x*4 +2] = b;
+                }
+            }
+            canvas4.width =  image4.width;
+            canvas4.height = image4.height;
+            ctx4.putImageData( image4, 0, 0 );
+            letra4.innerHTML = "Bordes horizontales";
+
+            }
+        //algoritmo para las lineanas diagonales
+        function bordesDFuncion()
+        {
+
+            imgAGrisFuncion();
+            image1 = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
+            image2 = ctx2.getImageData(0, 0, canvas2.width, canvas2.height);
+            image4 = ctx2.getImageData(0, 0, canvas1.width, canvas1.height);
+
+            pixels = image2.data;
+            pixelsRes = image4.data;
+            for ( var y = 0; y < image2.height-1; y++ )
+            {
+
+                for ( var x = 0; x < image2.width-1; x++ )
+                {
+                    var r = Math.abs(pixels[y*image2.width*4 + x*4 +0]-pixels[(y+1)*image2.width*4 + (x+1)*4 +0]);
+                    var g = Math.abs(pixels[y*image2.width*4 + x*4 +1]-pixels[(y+1)*image2.width*4 + (x+1)*4 +1]);
+                    var b = Math.abs(pixels[y*image2.width*4 + x*4 +2]-pixels[(y+1)*image2.width*4 + (x+1)*4 +2]);
+                         pixelsRes[y*image2.width*4 + x*4 +0] = r;
+                         pixelsRes[y*image2.width*4 + x*4 +1] = g;
+                         pixelsRes[y*image2.width*4 + x*4 +2] = b;
+                }
+            }
+            canvas4.width =  image4.width;
+            canvas4.height = image4.height;
+            ctx4.putImageData( image4, 0, 0 );
+            letra4.innerHTML = "Bordes diagonales";
+
+
+        }
+        //algoritmo para las todas las lineanas
+        function bordesTFuncion()
+        {
+
+            imgAGrisFuncion();
+            image1 = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
+            image2 = ctx2.getImageData(0, 0, canvas2.width, canvas2.height);
+            image4 = ctx2.getImageData(0, 0, canvas1.width, canvas1.height);
+
+            pixels = image2.data;
+            pixelsRes = image4.data;
+            for ( var y = 0; y < image2.height-1; y++ )
+            {
+
+                for ( var x = 0; x < image2.width-1; x++ )
+                {
+                        //horizontales
+                        var rh = Math.abs(pixels[y*image2.width*4 + x*4 +0]-pixels[(y+1)*image2.width*4 + (x)*4 +0]);
+                        var gh = Math.abs(pixels[y*image2.width*4 + x*4 +1]-pixels[(y+1)*image2.width*4 + (x)*4 +1]);
+                        var bh = Math.abs(pixels[y*image2.width*4 + x*4 +2]-pixels[(y+1)*image2.width*4 + (x)*4 +2]);
+                        //veriticales
+                        var rv = Math.abs(pixels[y*image2.width*4 + (x)*4 +0]-pixels[y*image2.width*4 + (x+1)*4 +0]);
+                        var gv = Math.abs(pixels[y*image2.width*4 + (x)*4 +1]-pixels[y*image2.width*4 + (x+1)*4 +1]);
+                        var bv = Math.abs(pixels[y*image2.width*4 + (x)*4 +2]-pixels[y*image2.width*4 + (x+1)*4 +2]);
+                        //diagonales
+                        var rd = Math.abs(pixels[y*image2.width*4 + x*4 +0]-pixels[(y+1)*image2.width*4 + (x+1)*4 +0]);
+                        var gd = Math.abs(pixels[y*image2.width*4 + x*4 +1]-pixels[(y+1)*image2.width*4 + (x+1)*4 +1]);
+                        var bd = Math.abs(pixels[y*image2.width*4 + x*4 +2]-pixels[(y+1)*image2.width*4 + (x+1)*4 +2]);
+
+                         pixelsRes[y*image2.width*4 + x*4 +0] = Math.max(rh,rv,rd);
+                         pixelsRes[y*image2.width*4 + x*4 +1] = Math.max(gh,gv,gd);
+                         pixelsRes[y*image2.width*4 + x*4 +2] = Math.max(bh,bv,bd);
+                }
+            }
+            canvas4.width =  image4.width;
+            canvas4.height = image4.height;
+            ctx4.putImageData( image4, 0, 0 );
+            letra4.innerHTML = "Todos los bordes";
+
+
+        }
+        function colorR()
+        {
+            imageR = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            pixelsRes = imageR.data;
+            for ( var y = 0; y < imageR.height; y++ )
+            {
+                for ( var x = 0; x < imageR.width; x++ )
+                {
+                         pixelsRes[y *imageR.width*4 + x*4 +1] = 0;
+                         pixelsRes[y*imageR.width*4 + x*4 +2] = 0;
+                }
+            }
+            canvas2.width =  imageR.width;
+            canvas2.height = imageR.height;
+            ctx2.putImageData( imageR, 0, 0 );
+            letra2.innerHTML = "Rojo";
+
+        }
+        function colorG()
+        {
+            imageR = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            pixelsRes = imageR.data;
+            for ( var y = 0; y < imageR.height; y++ )
+            {
+                for ( var x = 0; x < imageR.width; x++ )
+                {
+                         pixelsRes[y *imageR.width*4 + x*4 +0] = 0;
+                         pixelsRes[y*imageR.width*4 + x*4 +2] = 0;
+                }
+            }
+            canvas2.width =  imageR.width;
+            canvas2.height = imageR.height;
+            ctx2.putImageData( imageR, 0, 0 );
+            letra2.innerHTML = "Verde";
+
+        }
+        function colorB()
+        {
+            imageR = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            pixelsRes = imageR.data;
+            for ( var y = 0; y < imageR.height; y++ )
+            {
+                for ( var x = 0; x < imageR.width; x++ )
+                {
+                         pixelsRes[y *imageR.width*4 + x*4 +1] = 0;
+                         pixelsRes[y*imageR.width*4 + x*4 +0] = 0;
+                }
+            }
+            canvas2.width =  imageR.width;
+            canvas2.height = imageR.height;
+            ctx2.putImageData( imageR, 0, 0 );
+            letra2.innerHTML = "Azul";
+
+        }
+        function bordesCVFuncion()
+        {
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image2 = image1;
+            pixels = image1.data;
+            pixelsRes = image2.data;
+            for ( var y = 0; y < image1.height; y++ )
+            {
+                for ( var x = 0; x < image1.width-1; x++ )
+                {
+                    var r = Math.abs(pixels[y*image1.width*4 + (x)*4 +0]-pixels[y*image1.width*4 + (x+1)*4 +0]);
+                    var g = Math.abs(pixels[y*image1.width*4 + (x)*4 +1]-pixels[y*image1.width*4 + (x+1)*4 +1]);
+                    var b = Math.abs(pixels[y*image1.width*4 + (x)*4 +2]-pixels[y*image1.width*4 + (x+1)*4 +2]);
+                         pixelsRes[y*image1.width*4 + x*4 +0] = r;
+                         pixelsRes[y*image1.width*4 + x*4 +1] = g;
+                         pixelsRes[y*image1.width*4 + x*4 +2] = b;
+                }
+            }
+            canvas2.width =  image1.width;
+            canvas2.height = image1.height;
+            ctx2.putImageData( image2, 0, 0 );
+            letra2.innerHTML = "Bordes verticales color";
+
+        }
+        function bordesCHFuncion()
+        {
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image2 = image1;
+
+            pixels = image1.data;
+            pixelsRes = image2.data;
+            for ( var y = 0; y < image1.height-1; y++ )
+            {
+                for ( var x = 0; x < image1.width; x++ )
+                {
+                    var r = Math.abs(pixels[y*image1.width*4 + (x)*4 +0]-pixels[(y+1)*image1.width*4 + (x)*4 +0]);
+                    var g = Math.abs(pixels[y*image1.width*4 + (x)*4 +1]-pixels[(y+1)*image1.width*4 + (x)*4 +1]);
+                    var b = Math.abs(pixels[y*image1.width*4 + (x)*4 +2]-pixels[(y+1)*image1.width*4 + (x)*4 +2]);
+                         pixelsRes[y*image1.width*4 + x*4 +0] = r;
+                         pixelsRes[y*image1.width*4 + x*4 +1] = g;
+                         pixelsRes[y*image1.width*4 + x*4 +2] = b;
+                }
+            }
+            canvas2.width =  image1.width;
+            canvas2.height = image1.height;
+            ctx2.putImageData( image2, 0, 0 );
+            letra2.innerHTML = "Bordes Horizontales color";
+
+        }
+            function bordesCDFuncion()
+        {
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image2 = image1;
+
+            pixels = image1.data;
+            pixelsRes = image2.data;
+            for ( var y = 0; y < image1.height; y++ )
+            {
+                for ( var x = 0; x < image1.width-1; x++ )
+                {
+                    var r = Math.abs(pixels[y*image1.width*4 + (x)*4 +0]-pixels[(y+1)*image1.width*4 + (x+1)*4 +0]);
+                    var g = Math.abs(pixels[y*image1.width*4 + (x)*4 +1]-pixels[(y+1)*image1.width*4 + (x+1)*4 +1]);
+                    var b = Math.abs(pixels[y*image1.width*4 + (x)*4 +2]-pixels[(y+1)*image1.width*4 + (x+1)*4 +2]);
+                         pixelsRes[y*image1.width*4 + x*4 +0] = r;
+                         pixelsRes[y*image1.width*4 + x*4 +1] = g;
+                         pixelsRes[y*image1.width*4 + x*4 +2] = b;
+                }
+            }
+            canvas2.width =  image1.width;
+            canvas2.height = image1.height;
+            ctx2.putImageData( image2, 0, 0 );
+            letra2.innerHTML = "Bordes Diagonales color";
+
+        }
+
+        function bordesCTFuncion()
+        {
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image2 = image1;
+
+            pixels = image1.data;
+            pixelsRes = image2.data;
+            for ( var y = 0; y < image1.height-1; y++ )
+            {
+                for ( var x = 0; x < image1.width-1; x++ )
+                {
+                        var r = Math.abs(pixels[y*image1.width*4 + (x)*4 +0]-pixels[y*image1.width*4 + (x+1)*4 +0]);
+                        var g = Math.abs(pixels[y*image1.width*4 + (x)*4 +1]-pixels[y*image1.width*4 + (x+1)*4 +1]);
+                        var b = Math.abs(pixels[y*image1.width*4 + (x)*4 +2]-pixels[y*image1.width*4 + (x+1)*4 +2]);
+
+                        var r1 = Math.abs(pixels[y*image1.width*4 + (x)*4 +0]-pixels[y*image1.width*4 + x*4 +0]);
+                        var g1 = Math.abs(pixels[y*image1.width*4 + (x)*4 +1]-pixels[y*image1.width*4 + x*4 +1]);
+                        var b1 = Math.abs(pixels[y*image1.width*4 + (x)*4 +2]-pixels[y*image1.width*4 + x*4 +2]);
+
+                        var r2 = Math.abs(pixels[y*image1.width*4 + (x)*4 +0]-pixels[y*image1.width*4 + x*4 +0]);
+                        var g2 = Math.abs(pixels[y*image1.width*4 + (x)*4 +1]-pixels[y*image1.width*4 + x*4 +1]);
+                        var b2 = Math.abs(pixels[y*image1.width*4 + (x)*4 +2]-pixels[y*image1.width*4 + x*4 +2]);
+
+
+                         pixelsRes[y*image1.width*4 + x*4 +0] = Math.abs(r,r1,r2);
+                         pixelsRes[y*image1.width*4 + x*4 +1] = Math.abs(g,g1,g2);
+                         pixelsRes[y*image1.width*4 + x*4 +2] = Math.abs(b,b1,b2);
+
+                }
+            }
+            canvas2.width =  image1.width;
+            canvas2.height = image1.height;
+            ctx2.putImageData( image2, 0, 0 );
+            letra2.innerHTML = "todos los bordes color";
+
+        }
+        function HistogramaGris(){
+            imgAGrisFuncion();
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+            image2 = ctx2.getImageData( 0, 0, canvas2.width, canvas2.height );
+            image4 = ctx2.getImageData( 0, 0, canvas1.width, canvas1.height );
+
+            pixels = image2.data;
+             histo= new Array(256).fill(0)
+             max=0;
+            for ( var y = 0; y < image1.height; y++ )
+            {
+                for ( var x = 0; x < image1.width; x++ )
+                {
+                    var tem=histo[pixels[y*image1.width*4 + x*4 +0]];
+                    histo[pixels[y*image1.width*4 + x*4 +0]]+=1;
+
+                }
+            }
+            console.log(histo)
+
+            for(var i=0;i<256;i++)
+                if(max<histo[i])
+                    max=histo[i];
+            canvas4.width =  800;
+            canvas4.height = 600;
+            ctx4.fillStyle="white";
+            ctx4.fillRect(0,0,800,600);
+            for(var i=0;i<256;i++){
+                var tam=(histo[i]/(max/500));
+                console.log(tam);
+                ctx4.fillStyle="red";
+                ctx4.fillRect(i*3+10,550-tam,2,tam);
+            }
+            letra4.innerHTML = "Histograma con Escala de grises";
+
+        }
+        function HistogramaColor(){
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height );
+
+             pixels = image1.data;
+             histoR= new Array(256).fill(0)
+             histoG= new Array(256).fill(0)
+             histoB= new Array(256).fill(0)
+
+             max=0;
+            for ( var y = 0; y < image1.height; y++ )
+            {
+                for ( var x = 0; x < image1.width; x++ )
+                {
+                    histoR[pixels[y*image1.width*4 + x*4 +0]]+=1;
+                    histoB[pixels[y*image1.width*4 + x*4 +1]]+=1;
+                    histoG[pixels[y*image1.width*4 + x*4 +2]]+=1;
+
+                }
+            }
+
+            for(var i=0;i<256;i++){
+                temp=Math.max(histoR[i],histoG[i],histoB[i]);
+                if(max<temp){
+                    max=temp;
+                }
+            }
+            canvas3.width =  1600;
+            canvas3.height = 600;
+            ctx3.fillStyle="white";
+            ctx3.fillRect(0,0,1600,600);
+            for(var i=0;i<256;i++){
+                var tam=(histoR[i]/(max/500));
+                ctx3.fillStyle="red";
+                ctx3.fillRect(i*6+10,550-tam,2,tam);
+                //verde
+                tam=(histoG[i]/(max/500));
+                ctx3.fillStyle="green";
+                ctx3.fillRect(i*6+12,550-tam,2,tam);
+                //azul
+                tam=(histoB[i]/(max/500));
+                ctx3.fillStyle="blue";
+                ctx3.fillRect(i*6+14,550-tam,2,tam);
+            }
+            letra3.innerHTML = "histograma a color";
+
+        }
+
+        function funcionAnd(){
+            //imgAGrisFuncion();
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image2 = ctx2.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image3= ctx2.getImageData( 0, 0, canvas1.width, canvas1.height);
+            pixels = image1.data
+            pixels2 = image2.data;
+            pixelsRes = image3.data;
+
+            minc=Math.min(image1.width,image2.width);
+            minr=Math.min(image1.height,image2.height);
+
+            for ( var y = 0; y < minr; y++ )
+            {
+                for ( var x = 0; x < minc; x++ )
+                {
+
+                         pixelsRes[y*minc*4 + x*4 +0] = (pixels[y*minc*4 + x*4 +0]&pixels2[y*minc*4 + x*4 +0]);
+                         pixelsRes[y*minc*4 + x*4 +1] = (pixels[y*minc*4 + x*4 +1]&pixels2[y*minc*4 + x*4 +1]);
+                         pixelsRes[y*minc*4 + x*4 +2] = (pixels[y*minc*4 + x*4 +2]&pixels2[y*minc*4 + x*4 +2]);
+                }
+            }
+            canvas3.width =  image1.width;
+            canvas3.height = image1.height;
+            ctx3.putImageData( image3, 0, 0 );
+            letra3.innerHTML = "AND";
+
+        }
+        function funcionOR(){
+            image1 = ctx1.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image2 = ctx2.getImageData( 0, 0, canvas1.width, canvas1.height);
+            image3 = ctx2.getImageData( 0, 0, canvas1.width, canvas1.height);
+            pixels = image1.data
+            pixels2 = image2.data;
+            pixelsRes = image3.data;
+
+            minc=Math.min(image1.width,image2.width);
+            minr=Math.min(image1.height,image2.height);
+
+            for ( var y = 0; y < minr; y++ )
+            {
+                for ( var x = 0; x < minc; x++ )
+                {
+
+                        pixelsRes[y*minc*4 + x*4 +0] = (pixels[y*minc*4 + x*4 +0]|pixels2[y*minc*4 + x*4 +0]);
+                        pixelsRes[y*minc*4 + x*4 +1] = (pixels[y*minc*4 + x*4 +1]|pixels2[y*minc*4 + x*4 +1]);
+                        pixelsRes[y*minc*4 + x*4 +2] = (pixels[y*minc*4 + x*4 +2]|pixels2[y*minc*4 + x*4 +2]);
+                }
+            }
+            canvas3.width =  image1.width;
+            canvas3.height = image1.height;
+            ctx3.putImageData( image3, 0, 0 );
+            letra3.innerHTML = "OR";
+
+        }
+        function colorearFuncion(){
+            imgAGrisFuncion();
+            image2 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+            image3 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+
+            pixels = image2.data;
+            pixelsRes =  image3.data;
+            for(var x=0;x<image2.height*image2.width;x++){
+                pixelsRes[x*4+0] = pixels[x*4+0]*R1/255;
+                pixelsRes[x*4+1] = pixels[x*4+1]*G1/255;
+                pixelsRes[x*4+2] = pixels[x*4+2]*B1/255;
+            }
+            canvas3.width=image2.width;
+            canvas3.height=image2.height;
+            ctx3.putImageData(image3,0,0);
+            letra3.innerHTML = "Colorear con ",R1,",",G1,",",B1;
+
+        }
+
+        function normalizaSumaResta(pixel) {
+            return (pixel>255)?255:(pixel<0?0:pixel)
+        }
+        function suma(op){
+            //op=(op>0)?1:(op<0?-1:1)
+            var image1 = ctx1.getImageData(0,0,canvas1.width,canvas2.height);
+            var image2 = ctx2.getImageData(0,0,canvas2.width,canvas2.height);
+            var image3 = ctx2.getImageData(0,0,canvas2.width,canvas2.height);
+            if(image1.height == image2.height && image1.width==image2.width){
+                var pixelsA = image1.data;
+                var pixelsB = image2.data;
+                var pixelsRes =  image3.data;
+                for(var x=0;x<image2.height*image2.width;x++){
+                    pixelsRes[x*4+0] = (pixelsA[x*4+0]+(pixelsB[x*4+0]*op));
+                    pixelsRes[x*4+1] = (pixelsA[x*4+1]+(pixelsB[x*4+1]*op));
+                    pixelsRes[x*4+2] = (pixelsA[x*4+2]+(pixelsB[x*4+2]*op));
+                }
+                canvas3.width=image2.width;
+                canvas3.height=image2.height;
+                ctx3.putImageData(image3,0,0);
+                if(op==1)
+                    letra3.innerHTML = "Operacion suma"
+                else
+                    letra3.innerHTML = "Operacion resta"
+
+            }
+            else
+                window.alert("LAS IMAGENES TIENEN QUE SER DEL MISMO TAMAÑO")
+
+        }
+        // 1 2 3 4 5 6 7 8
+        // 1   3   5   7
+        // 1     4     7
+
+        // 1 2 3 4 5 6   --0  --6
+        // 1   3   4     --1  --3
+        // 1     4            --2  --2
+        function Aumentar(){
+          imgAGrisFuncion()
+           var valor=Number(vecesAumentar.value)
+             if(valor!=NaN && valor>0 && valor<10)
+             {
+                  valor = Math.round(valor)
+                  var image1 = ctx1.getImageData(0,0,canvas1.width,canvas1.height);
+                  var pixels = image1.data;
+                  console.log("valor:",valor)
+                   image3 = new ImageData(parseInt(image1.width*valor),parseInt(image1.height*valor))//width,height);;
+                  var pixelsRes = image3.data;
+                  
+                  
+
+                  
+                  
+
+                  canvas3.width=image3.width;
+                  canvas3.height=image3.height;
+                  ctx3.putImageData(image3,0,0);
+                  letra3.innerHTML = "Aumentar a: "+valor
+            }
+            else
+              window.alert("valor no valido, intenta con valores enteros que esten dentro del rango 1-9")
+
+        }
+
+        function Reducir(){
+            var valor=Number(vecesReducir.value)
+             if(valor!=NaN && valor>0 && valor<10)
+             {
+                  valor = Math.round(valor)
+                  var image1 = ctx1.getImageData(0,0,canvas1.width,canvas1.height);
+                  var pixels = image1.data;
+                  console.log("valor:",valor)
+                  var image3 = new ImageData(Math.round(image1.width/valor),Math.round(image1.height/valor))//width,height);;
+                  var pixelsRes = image3.data;
+
+                  for(var j=0;j<image3.height;j++){
+                    for(var i=0;i<image3.width;i++){
+                      pixelsRes[j*image3.width*4+i*4+0]=pixels[((j*valor)*image1.width*4)+(i*valor)*4+0];
+                      pixelsRes[j*image3.width*4+i*4+1]=pixels[((j*valor)*image1.width*4)+(i*valor)*4+1];
+                      pixelsRes[j*image3.width*4+i*4+2]=pixels[((j*valor)*image1.width*4)+(i*valor)*4+2];
+                      pixelsRes[j*image3.width*4+i*4+3]=255;
+                    }
+                  }
+
+                  canvas3.width=image3.width;
+                  canvas3.height=image3.height;
+                  ctx3.putImageData(image3,0,0);
+                  letra3.innerHTML = "Reduce a: "+valor
+            }
+            else
+              window.alert("valor no valido, intenta con valores enteros que esten dentro del rango 1-9")
+        }
+
+
+        function gradianteFuncion(){
+            imgAGrisFuncion();
+            image2 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+            image3 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+            image4 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+            pixels = image2.data;
+            pixelsRes =  image3.data;
+            pixelsRV =  image4.data;
+
+            DR=parseFloat((R2-R1)/parseFloat(image2.height));
+            DB=parseFloat((G2-G1)/parseFloat(image2.height));
+            DG=parseFloat((B2-B1)/parseFloat(image2.height));
+
+            DR2=parseFloat((R2-R1)/parseFloat(image2.width));
+            DB2=parseFloat((G2-G1)/parseFloat(image2.width));
+            DG2=parseFloat((B2-B1)/parseFloat(image2.width));
+            console.log("R1",R1);
+            console.log("G1",G1);
+            console.log("B1",B1);
+            console.log("R2",R2);
+            console.log("G2",G2);
+            console.log("B2",B2);
+
+
+            for(var x=0;x<image2.height*image2.width;x++){
+
+                pixelsRes[x*4+0] = Math.floor(pixels[x*4+0]*parseFloat(R1+DR2*(x/image2.width))/255);
+                pixelsRes[x*4+1] = Math.floor(pixels[x*4+1]*parseFloat(G1+DG2*(x/image2.width))/255);
+                pixelsRes[x*4+2] = Math.floor(pixels[x*4+2]*parseFloat(B1+DB2*(x/image2.width))/255);
+
+                pixelsRV[x*4+0] = Math.floor(pixels[x*4+0]*parseFloat(R1+DR*(x%image2.width))/255);
+                pixelsRV[x*4+1] = Math.floor(pixels[x*4+1]*parseFloat(G1+DG*(x%image2.width))/255);
+                pixelsRV[x*4+2] = Math.floor(pixels[x*4+2]*parseFloat(B1+DB*(x%image2.width))/255);
+
+            }
+            canvas3.width=image2.width;
+            canvas3.height=image2.height;
+            ctx3.putImageData(image3,0,0);
+
+            canvas4.width=image2.width;
+            canvas4.height=image2.height;
+            ctx4.putImageData(image4,0,0);
+            letra4.innerHTML = "Gradiante";
+
+        }
+
+        function selectFuncion(){
+          x1=0,x2=0
+          y1=0,y2=0
+          bandera=0
+                imgAGrisFuncion()
+                canvas2.addEventListener("mousedown", evento => {
+                   if(bandera==0){
+                        x1 = (evento.clientX- canvas2.getBoundingClientRect().x);
+                        y1 = (evento.clientY- canvas2.getBoundingClientRect().y);
+                        x1=Math.floor(x1)
+                        y1=Math.floor(y1)
+
+                        console.log("x",x1)
+                        console.log("y",y1)
+
+                        bandera=1
+                   }
+                   else
+                   if(bandera==1)
+                   {
+                        x2 = (evento.clientX -canvas2.getBoundingClientRect().x);
+                        y2 = (evento.clientY-canvas2.getBoundingClientRect().y);
+                        //segunda clikeada
+                        x2=Math.floor(x2)
+                        y2=Math.floor(y2)
+                        console.log("x2",x2)
+                        console.log("y2",y2)
+                        var puntox=x1<x2?x1:x2;
+                        var puntoy=y1<y2?y1:y2;
+
+                        var la=x2>x1?(x2-x1):(x1-x2);
+                        var lb=y2>y1?(y2-y1):(y1-y2);
+                        //boton = Rect(puntox,puntoy,la,lb);
+                        //rectangle(res,boton,(255,0,0),1);
+                        image1 = ctx1.getImageData(0,0,canvas1.width,canvas1.height);
+                        image2 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+                        pixels = image1.data;
+                        pixelsRes = image2.data;
+                        for(var y=puntoy;y<puntoy+lb;y++){
+                            for(var x=puntox;x<puntox+la;x++){
+                                pixelsRes[y*image1.width*4 + x*4 +0]=pixels[y*image1.width*4 + x*4 +0];
+                                pixelsRes[y*image1.width*4 + x*4 +1]=pixels[y*image1.width*4 + x*4 +1];
+                                pixelsRes[y*image1.width*4 + x*4 +2]=pixels[y*image1.width*4 + x*4 +2];
+
+                            }
+                        }
+
+                        canvas2.width=image1.width;
+                        canvas2.height=image1.height;
+                        ctx2.putImageData(image2,0,0);
+                        bandera=2
+
+                   }else
+                   if(bandera==2){
+                    imgAGrisFuncion()
+                    bandera=0
+                   }
+                });
+                letra2.innerHTML = "Seleccionar area pintar";
+
+        }
+        function pasaBaja(num){
+            switch(num){
+              case 1:  Convulucion(new Array(0,1,0,1,2,1,0,1,0)); break;
+              case 2:  Convulucion(new Array(1,1, 1, 1, 1, 1, 1, 1, 1)); break;
+              case 3:  Convulucion(new Array(1,1,1,1,2,1,1,1,1));break;
+              case 4:  Convulucion(new Array(1,2,1,2,4,2,1,2,1));break;
+              default: Convulucion(new Array(1,4,1,4,12,4,1,4,1));break;
+
+            }
+            letra3.innerHTML = letra3.innerHTML + "  Pasa baja"
+        }
+       function pasaAlta(num){
+            switch(num){
+              case 1:  Convulucion(new Array( 0,-1,0,-1,5,-1,0,-1,0)); break;
+              case 2:  Convulucion(new Array(-1,-1,-1,-1,9,-1,-1,-1,-1)); break;
+              default: Convulucion(new Array(1,-2,1,-2,5,-2,1,-2,1)); break;
+
+            }
+            letra3.innerHTML = letra3.innerHTML + "  Pasa alta"
+
+        }
+        function filtrosBordes(num){
+            var temp =" ";
+            switch(num){
+              case 1:  Convulucion(new Array(-1, 0, 1,-1,0,1, -1, 0, 1));
+                       temp= "  Faler"
+                      break;//faler
+              case 2:  Convulucion(new Array(5, 5, 5,-3, 0,-3,-3,-3,-3));
+                      temp= "  Kirsch"
+                       break;//Kirsch
+              case 3:  Convulucion(new Array(1,1,1,1,-2,1,-1,-1,-1));
+                      temp= "  Prewit"
+                       break;
+              default: Convulucion(new Array(1,2,1,0,0,0,-1,-2,-1));
+                      temp= "  Sobel"
+                       break;
+
+            }
+            letra3.innerHTML=letra3.innerHTML+temp
+
+        }
+        function matricesFuncion(){
+          var cadena = matrizEntrada.value;
+          console.log(cadena)
+          var cadena = cadena.split(",")
+          console.log("split",cadena)
+          cadena= cadena.map((a)=>Number(a),0)
+          console.log("cadena leng",cadena.length)
+          if((cadena.length)%2!=0 && cadena.length>8)
+            Convulucion(cadena)
+          else {
+            window. alert("el filtro no es correcto, el array debe ser de tamano 3x3")
+          }
+        }
+        function Convulucion(cadena){
+          //obtener el array que represente al filtro de matrizEntrada
+          imgAGrisFuncion()//tiene que que ser imangen a escala de grises
+          var image1 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+          var image3 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+          var pixels=image1.data;
+          var pixelsRes=image3.data;
+          var matriz=cadena
+          console.log("matriz: ", matriz)
+          let sumaM = matriz.reduce((a, b) => a + b, 0);
+          sumaM=sumaM==0?1:sumaM
+            for(var y=1;y<image2.height-1;y++){
+                for(var x=1;x<image2.width-1;x++){
+                    var temp=new Array(9).fill(0)
+                    temp[0]=pixels[(y-1)*image1.width*4 + (x+0)*4 +0]*matriz[0]
+                    temp[1]=pixels[(y-1)*image1.width*4 + (x+4)*4 +0]*matriz[1]
+                    temp[2]=pixels[(y-1)*image1.width*4 + (x+8)*4 +0]*matriz[2]
+                    //
+                    temp[3]=pixels[(y-0)*image1.width*4 + (x+0)*4 +0]*matriz[3]
+                    temp[4]=pixels[(y-0)*image1.width*4 + (x+4)*4 +0]*matriz[4]
+                    temp[5]=pixels[(y-0)*image1.width*4 + (x+8)*4 +0]*matriz[5]
+                    //
+                    temp[6]=pixels[(y+1)*image1.width*4 + (x+0)*4 +0]*matriz[6]
+                    temp[7]=pixels[(y+1)*image1.width*4 + (x+4)*4 +0]*matriz[7]
+                    temp[8]=pixels[(y+1)*image1.width*4 + (x+8)*4 +0]*matriz[8]
+                    //let total = temp.reduce((a, b) => a + b, 0);
+                    let total=0;
+                    for (var c=0;c<9;c++){
+                        total = total+temp[c]
+                    }
+                    total=parseInt(total/sumaM)
+                    total=(total>200)?255:total;
+                    total=(total<60)?0:total;
+                    pixelsRes[y*image1.width*4+x*4+0]=total
+                    pixelsRes[y*image1.width*4+x*4+1]=total
+                    pixelsRes[y*image1.width*4+x*4+2]=total
+                }
+            }
+
+                        canvas3.width=image1.width;
+                        canvas3.height=image1.height;
+                        ctx3.putImageData(image3,0,0);
+                        letra3.innerHTML = "Convulucion ["+cadena+"]";
+
+        }
+        function rotarFuncion(){
+              var g = gradoEntrada.value;
+              //console.log(g)
+              //var cadena = cadena.split(",")
+              //console.log("split",cadena)
+              //g = g.map((a)=>Number(a),0)
+              g=Number(g);
+              console.log("g:",g)
+              if(g!=NaN)
+                    rota(g)
+              else {
+                    window.alert("El valor introducido para los grados no es correcto")
+              }
+        }
+        function SIN(x){
+            return Math.sin(x*Math.acos(-1)/180)
+        }
+        function COS(x){
+            return Math.cos(x*Math.acos(-1)/180)
+        }function rotaMejorado(grados){
+            imgAGrisFuncion();
+
+        }
+        function rota(grados){
+          imgAGrisFuncion()//tiene que que ser imangen a escala de grises
+          image2 = ctx2.getImageData(0,0,canvas1.width,canvas1.height);
+          dat1=image2.data;
+          //pixelsRes=image3.data;
+
+          var filas=canvas1.height;
+          var columnas=canvas1.width;
+
+          var nDF=Math.round((filas* Math.abs(COS(grados)))+(columnas*Math.abs(SIN(grados))));
+          var nDC=Math.round((filas* Math.abs(SIN(grados)))+(columnas*Math.abs(COS(grados))));
+
+          var refY=Math.round(nDC/2);
+          var refX=Math.round(nDF/2);
+
+          var Xoffset=Math.round(refX-filas/2);
+          var Yoffset=Math.round(refY-columnas/2);
+          var i,j;
+          var nuevaX,nuevaY,xPrima,yPrima;
+          canvas3.width=Math.abs(nDC);//image1.width;
+          canvas3.height=Math.abs(nDF);//image1.height;
+          console.log("si bien recuerdo ndf:",(nDF),"-",(nDC))
+
+          var image3 = new ImageData(parseInt(canvas3.width), parseInt(canvas3.height));
+          console.log("")
+          var dat2 = image3.data;
+          for(i=0;i<(canvas3.width)*(canvas3.height);i++){
+              dat2[(i*4+0)]=0
+              dat2[(i*4+1)]=0
+              dat2[(i*4+2)]=0
+              dat2[(i*4+3)]=255
+
+
+          }
+
+         for(j=0;j<image2.height;j++){
+            for(i=0;i<image2.width;i++){
+              nuevaX=j-refX+Xoffset;
+              nuevaY=i-refY+Yoffset;
+              xPrima=Math.round((refX+(nuevaX*COS(grados)-nuevaY*SIN(grados))));
+              yPrima=Math.round((refX+(nuevaX*SIN(grados)+nuevaY*COS(grados))));
+
+
+              if(xPrima>=0 && xPrima<=nDF && yPrima>=0 && yPrima<=nDC){
+
+                  dat2[parseInt(xPrima*image3.width*4+(yPrima*4+0))]=dat1[j*image2.width*4+(i*4+0)];
+                  dat2[parseInt(xPrima*image3.width*4+(yPrima*4+1))]=dat1[j*image2.width*4+(i*4+1)];
+                  dat2[parseInt(xPrima*image3.width*4+(yPrima*4+2))]=dat1[j*image2.width*4+(i*4+2)];
+                  if(j==0)
+                    console.log("j=0 , ",j*image2.width*4+(i*4+0)," xPrima:",xPrima,"  yPrima:",yPrima)
+              }
+
+            }
+          }
+
+
+
+          ctx3.putImageData(image3,0,0);
+          //ctx4.putImageData(image2,0,0);
+          letra3.innerHTML = "Rotacion en "+grados+" grados";
+
+
+        }
+
+
+//Math.floor para bajarlo
+//Math.ceil para subirlo
+        function nuevaPunto(xPrima,yPrima){
+            var xArribaI=Math.floor(xPrima);
+            var yArribaI=Math.floor(yPrima);
+            var xArribaD=Math.ceil(xPrima);
+            var yArribaI=Math.floor(yPrima);
+
+
+
+        }
+        function inter(x1,x2,y1,y2,x){
+            return (y1+((y2-y1)/(x2-x1))*(x-x1))
+        }
+//umbral valores de 0 a 100
+
+
+//primer algoritomo   d =  |r -r'| + |g - g'| + | b-b'|
+//segundo algoritmo   d =   ((r-r')² + (g-g')² + (b-b')² )^1/²
+
+        function segmentacion(){
+          var imageO = ctx1.getImageData(0,0,canvas1.width,canvas1.height);
+          var image1 = ctx1.getImageData(0,0,canvas1.width,canvas1.height);
+          var image2 = ctx1.getImageData(0,0,canvas1.width,canvas1.height);
+          
+          var datO=imageO.data;
+          var dat1=image1.data;
+          var dat2=image2.data;
+
+          //tenemos que tener el valor de un color 
+          var nR,nG,nB,d
+          console.log("R",R1/2,"G",G1/2,"b",B1/2)
+          var date=new Date()
+          var ini=Date.now()
+          for(var x=0;x<image1.width*image1.height;x++){
+              nR=Math.abs(datO[x*4+0]-R1)
+              nG=Math.abs(datO[x*4+1]-G1)
+              nB=Math.abs(datO[x*4+2]-B1)
+              d=nR+nG+nB
+              d=(d>255)?255:d
+              if(d>150){ 
+               var g=parseInt((dat2[x*4+0]+dat2[x*4+1]+dat2[x*4+2])/3)
+               dat1[x*4+0]=g
+               dat1[x*4+1]=g
+               dat1[x*4+2]=g 
+              }
+          }
+         var fin1=Date.now()
+         var time1=fin1-ini
+         console.log("el primer algoritmo tardo: ",time1,"milisegundos")
+         ini=Date.now()
+          for (var x=0;x<image1.width*image1.height;x++){
+              nR=Math.pow(datO[x*4+0]-R1,2)
+              nG=Math.pow(datO[x*4+1]-G1,2)
+              nB=Math.pow(datO[x*4+2]-B1,2)
+              d=nR+nG+nB
+              d=parseInt(Math.sqrt(d))
+              d=(d>255)?255:d
+              if(d>150){
+                var g=parseInt((dat2[x*4+0]+dat2[x*4+1]+dat2[x*4+2])/3)
+                dat2[x*4+0]=g
+                dat2[x*4+1]=g
+                dat2[x*4+2]=g
+              }
+            }
+          var fin2=Date.now()
+          var time2 = fin2-ini
+          console.log("el segundo algoritmo tardo: ",time2,"milisegundos")
+          canvas3.width=image1.width;
+          canvas3.height=image1.height;
+          canvas4.width=image1.width;
+          canvas4.height=image1.height;
+          ctx3.putImageData(image1,0,0);
+          ctx4.putImageData(image2,0,0);
+          letra3.innerHTML = "segmentacion esferica, tiempo "+time1+"ms"
+          letra4.innerHTML = "segmentacion  cuadratica. tiempo"+time2+"ms"
+        
+        }
+
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>$(".button-collapse").sideNav();</script>
+    </body>
+</html>
