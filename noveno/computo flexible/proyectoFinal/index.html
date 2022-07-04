@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuidadoConElChichuhua</title>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+      body
+      {
+          background: rgb(187, 193, 197);
+      }
+      </style> 
+</head>
+<body>
+    <div class="row pink darken-1">
+      <div class="col s2 pink darken-2">
+        <ul id="slide-out" class="sidenav">
+          <li><a href="#!">Pantalones</a></li>
+          <li><a href="#!">Camisas</a></li>
+          <li><a href="#!">Ofertas</a></li>
+          <li><a href="#!">Devoluciones</a></li>
+        
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+      </div> 
+      <div class="col s9 pink darken-3 ">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Tienda</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="sass.html">Carrito</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="row pink darker-2 center-aling">
+          <div class="card col s3">
+            <div class="card-image waves-efect waves-block waves-light">
+              <img src="images/playera3.jpeg"  class="activator responsive-img" alt="">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text text-darken-4">Precio $500.00</span>
+              <p>
+                <label for="">
+                  <input type="checkbox" checked="checked" disabled="disabled" >
+                  <span>XXS</span>
+              </label>
+             </p>
+             <p>
+              <label for="">
+                <input type="checkbox" checked="checked" disabled="disabled" >
+                <span>XS</span>
+            </label>
+           </p>
+           <p>
+            <label for="">
+              <input type="checkbox" checked="checked" disabled="disabled" >
+              <span>S</span>
+          </label>
+         </p>
+         <p>
+          <label for="">
+            <input type="checkbox" checked="checked" disabled="disabled" >
+            <span>L</span>
+        </label>
+       </p>
+       <p>
+        <label for="">
+          <input type="checkbox" checked="checked" disabled="disabled" >
+          <span>CH</span>
+      </label>
+     </p>
+              <p><a href="#">No se.</a></p>
+            </div>
+          </div>
+          <!---->
+          <div class="col s2 blue darken-1">
+            <img src="images/playera1.jpeg" class="responsive-img">
+            
+          </div>
+          <div class="col s2 blue darken-2 ">
+            <img src="images/playera2.jpeg" class="responsive-img">
+          </div>
+          <div class="col "></div>
+        </div>
+        <a class="waves-effect waves-light btn modal-trigger red darken-3 col s3 center-align" href="#modal1">talla?</a>
+      </div>
+      
+    </div>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal modal-fixed-footer row">
+              <div class="modal-content col s6">
+              <h4>CALCULA CUAL SERIA TU TALLA</h4>
+                <div class="input-field col s12 center-align">
+                  <input id="tamMatriz" type="text" class="validate">
+                  <label for="icon_prefix">Cual es tu peso en KG?</label>
+                </div>
+
+                <div class="input-field col s12 center-align">
+                  <input id="tamMatriz" type="text" class="validate">
+                  <label for="icon_prefix">Cual es tu altura en centimetros?</label>
+                </div>
+
+                <div class="input-field col s12 center-align">
+                  <input id="tamMatriz" type="text" class="validate">
+                  <label for="icon_prefix">Cual es tu edad?</label>
+                </div>
+                <a class="waves-effect waves-light btn modal-trigger red darken-3 col s3 center-align">calcular mi talla</a>
+
+
+              </div>
+              <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+              </div>
+          </div>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>M.AutoInit();</script>
+</body>
+</html>
