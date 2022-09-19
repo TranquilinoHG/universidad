@@ -1,0 +1,577 @@
+PINTAR MACRO COLOR
+	PUSH AX
+	PUSH BX
+	PUSH CX
+	PUSH DX
+	MOV AL,COLOR
+	MOV AH, 0CH
+	INT 10H
+	POP DX
+	POP CX
+	POP BX
+	POP AX
+ENDM
+
+pinta30_20 MACRO XD, YD
+	local termi, t3, r20, r30, nega
+	push ax
+	push cx
+	push dx
+	push bx
+	MOV CX, XD			; GUARDA LA POSICION DE X DEL CENTRO
+	sub cx, 15			; LE RESTAMOS 15 PARA EL PRIMER PIXEL
+	MOV DX, 0
+	MOV DX, YD			; GUARDA LA POSICION DE Y DEL CENTRO
+	sub DX, 10			; LE RESTAMOS 10 PARA EL PRIMER PIXEL
+	mov ah, 30
+	mov bl, 20
+	; en 'SI' ya tiene que estar apuntando a la mtriz a dibujar
+	sub si, 1
+	r20:
+	cmp bl, 0
+	je termi
+
+		r30:
+		cmp ah,0
+		je t3
+
+			add si, 1				;recorremos la mtriz
+			cmp cx, 0
+			jl nega
+			cmp DX, 0
+			jl nega
+			cmp cx, 320
+			jg nega
+				pinta_px_no 		;pinta pixel si el color ess diferente de 07
+												; CX'x' y dx 'y'
+			nega:
+			ADD CX, 1
+			SUB AH, 1
+
+		jmp r30
+		t3:
+	mov ah, 30
+	sub cx, 30					;restamos 30 pixels
+	ADD DX, 1 					;inc dx			; inclementamos el y
+	SUB bL, 1 				;dec bl
+	jmp r20
+	termi:
+	pop bx
+	pop dx
+	pop cx
+	pop ax
+ENDM
+;----------------------------
+pinta_pasto MACRO
+	local termi, t3, r20, r30, negan
+	push ax
+	push cx
+	push dx
+	push bx
+	mov cx,	00
+	MOV CX, 00			; GUARDA LA POSICION DE X DEL CENTRO
+	MOV DX, 150			; GUARDA LA POSICION DE Y DEL CENTRO
+	mov ah, 80
+	mov bl, 30
+	lea si, Mpasto
+	sub si, 1
+	r20:
+	cmp bl, 0
+	je termi
+
+		r30:
+		cmp ah,0
+		je t3
+			add si, 1			; recorremos la mtriz
+			cmp cx, 0
+			jl negan
+			cmp dx, 0
+			jl negan
+			pinta_px_no 		;pinta pixel si el color ess diferente de 07
+								; CX'x' y dx 'y'
+			negan:
+			add CX, 1
+			SUB AH, 1
+		jmp r30
+		t3:
+	mov ah, 80
+	sub cx, 80					;restamos 30 pixels
+	ADD dx, 1 			;inc dx			; inclementamos el y
+	SUB bL, 1 			;dec bl
+	jmp r20
+	termi:
+	pop bx
+	pop dx
+	pop cx
+	pop ax
+ENDM
+pinta30_20_inverso MACRO Xi, Yi
+	local termi, t3, r20, r30, negan
+	push ax
+	push cx
+	push dx
+	push bx
+	mov cx,	00
+	MOV CX, Xi			; GUARDA LA POSICION DE X DEL CENTRO
+	add CX, 15			; LE RESTAMOS 15 PARA EL PRIMER PIXEL
+	MOV DX, Yi			; GUARDA LA POSICION DE Y DEL CENTRO
+	sub DX, 10			; LE RESTAMOS 10 PARA EL PRIMER PIXEL
+	mov ah, 30
+	mov bl, 20
+	; en 'SI' ya tiene que estar apuntando a la mtriz
+	sub si, 1
+	r20:
+	cmp bl, 0
+	je termi
+
+		r30:
+		cmp ah,0
+		je t3
+			add si, 1			; recorremos la mtriz
+			cmp cx, 0
+			jl negan
+			cmp dx, 0
+			jl negan
+			cmp cx, 320
+			jg negan
+			pinta_px_no 		;pinta pixel si el color ess diferente de 07
+								; CX'x' y dx 'y'
+			negan:
+			sub CX, 1
+			SUB AH, 1
+		jmp r30
+		t3:
+	mov ah, 30
+	add cx, 30					;restamos 30 pixels
+	ADD dx, 1 			;inc dx			; inclementamos el y
+	SUB bL, 1 			;dec bl
+	jmp r20
+	termi:
+	pop bx
+	pop dx
+	pop cx
+	pop ax
+ENDM
+;-____________________________________
+pinta_mira MACRO XD, YD
+	local termi, t3, r20, r30, nega
+	push ax
+	push cx
+	push dx
+	push bx
+	MOV CX, XD			; GUARDA LA POSICION DE X DEL CENTRO
+	sub cx, 6				; LE RESTAMOS 15 PARA EL PRIMER PIXEL
+	MOV DX, 0
+	MOV DX, YD			; GUARDA LA POSICION DE Y DEL CENTRO
+	sub DX, 6				; LE RESTAMOS 10 PARA EL PRIMER PIXEL
+	mov ah, 13
+	mov bl, 13
+	; en 'SI' ya tiene que estar apuntando a la mtriz a dibujar
+	sub si, 1
+	r20:
+	cmp bl, 0
+	je termi
+
+		r30:
+		cmp ah,0
+		je t3
+
+			add si, 1				;recorremos la mtriz
+			cmp cx, 0
+			jl nega
+			cmp DX, 0
+			jl nega
+			cmp cx, 319
+			jg nega
+			pinta_px_no 		;pinta pixel si el color ess diferente de 07
+											; CX'x' y dx 'y'
+			nega:
+			ADD CX, 1
+			SUB AH, 1
+
+		jmp r30
+		t3:
+	mov ah, 13
+	sub cx, 13					;restamos 30 pixels
+	ADD DX, 1 					;inc dx			; inclementamos el y
+	SUB bL, 1 				;dec bl
+	jmp r20
+	termi:
+	pop bx
+	pop dx
+	pop cx
+	pop ax
+ENDM
+
+pinta_px_no macro		;pinta pixel si el color es diferente de 07
+	LOCAL nopinta1
+	push ax
+	mov al, [si]
+	cmp al, 07
+		je nopinta1
+		pintar [si] 			; pintamos el pixel con el color de [si] y la posicion
+	nopinta1:
+	pop ax
+endm
+
+mueve_pato MACRO dire
+	LOCAL IF1,IF2,IF3,f
+	push AX
+	; dire = 0 adelante
+	; dire = 1 atras
+	; dire = 2 diagonal derecha
+	; dir = 3 diagonal izquierda
+	; ojo
+	; en Dx ya tiene que estar el eje X
+	; en bx ya tiene que estar el eje Y
+
+	cmp dire, 0
+	jne IF1
+		add dx, 1
+		jmp f
+	IF1:
+	cmp dire, 1
+	jne IF2
+		sub dx, 1
+		jmp f
+	IF2:
+	cmp dire, 2
+	jne IF3
+		add dx, 1
+		sub bx, 1
+		jmp f
+	IF3:
+	cmp dir, 3
+	jne f
+		sub dx, 1
+		sub bx, 1
+	f:
+	pop	 AX
+ENDM
+
+
+distancia macro x1,y1,x2,y2
+	push ax
+    push bx
+	push cx 
+	push dx
+	mov al,x2
+	sub al,x1	
+	mov bl,al
+	imul bl		
+	mov dx,ax	
+	mov al,y2
+	sub al,y1	
+	mov bl,al
+	imul bl		
+	add ax,bx	
+	pop dx
+	pop cx
+	pop bx
+    pop ax
+endm
+
+
+
+;IMPRIME UN STRING EN LA POSICION Y COLOR INGRESADOS
+display_string Macro x,fila,columna,longit,color
+    push ax
+    push bx
+    MOV AX, @DATA
+    MOV ES, AX  
+    MOV AH, 13H ; WRITE THE STRING
+    MOV AL, 0H; ATTRIBUTE IN BL, MOVE CURSOR TO THAT POSITION
+    XOR BH,BH ; VIDEO PAGE = 0
+    mov bl,color
+    MOV BP, OFFSET x; ES: BP POINTS TO THE TEXT
+    MOV CX, longit ; LENGTH OF THE STRING
+    MOV DH, fila ;ROW TO PLACE STRING
+    MOV DL, columna ; COLUMN TO PLACE STRING
+    INT 10H 
+    pop bx
+    pop ax
+EndM
+
+NICKY macro pl1,p1	;CREA EL ARCHIVO Y PIDE DATOS
+	LOCAL PEDIRB,PEDIRAB,F1B
+	;el nombre completo se ingresa al archivo
+	display_string nom,7,10,16,40
+	mov x2,12	;columnas
+	mov y2,10	;filas
+	call posXY
+pedirB:
+	mov ah,01h
+	int 21h
+	mov vec[si],al
+	inc si
+	cmp al,0dh	;enter
+	mov nvec,si
+	ja pedirB
+	jb pedirB
+	CALL LIMPIA
+	;el nick name es usado en el juego
+	display_string nom1,7,10,18,40
+	mov x2,12	;columnas
+	mov y2,10	;filas
+	call posXY
+	MOV BX,0
+pediraB:
+	mov ah,01h
+	int 21h
+	mov PL1[BX],al
+	inc BX
+	cmp al,0dh	;enter
+	ja pediraB
+	jb pediraB
+	mov p1,bx
+	inc ves
+F1B:	RET
+endm
+	
+copia macro may,inte	;copia inte en may
+	cld
+	mov cx,05
+	lea di,may	;receptora
+	lea si,inte	;emisora
+	rep movsb
+endm
+
+MAYORG1 MACRO VECTOR	
+	local tranqui,copiamay3a
+	mayorv may,vector
+	cmp posit,0		;vector es mayor
+	je copiamay3a	
+	copia inte,vector
+	jmp tranqui
+	
+copiamay3a:	copia vecaux,may	;copia may en un auxiliar, y el nick 
+			copianom aux,pl1	; del jugador igual
+			copia may,vector	;copia el score en may y el nick igual
+			copianom pl1,pl2	;copia el nuevo nick en el 1 lugar
+			mov ax,p1
+			mov bx,p2
+			mov p2,ax
+			mov p1,bx
+			copia inte,vecaux
+			copianom pl2,aux
+tranqui:
+ENDM
+
+;sirve para imprimir los tres primeros lugares
+MAYORG2 MACRO VECTOR
+	local copiamay3a1,tranqui11
+	mayorv may,vector
+	cmp posit,0		;vector es mayor
+	je copiam
+	mayorv inte,vector
+	cmp posit,0		;vector es mayor
+	je copiainte
+	copia min,vector
+	jmp tranqui11
+
+copiam: jmp copiamay3a1
+copiainte:	copia vec2,inte
+			copianom pl4,pl2
+			mov ax,p2
+			mov bx,p3
+			mov p2,bx
+			mov p3,ax
+			copianom pl2,pl3
+			copianom pl3,pl4
+			copia min,vec2
+			copia inte,vector
+			jmp tranqui11
+	
+copiamay3a1:	copia vecaux,may	;copia may en un auxiliar, y el nick 
+			copianom aux,pl1	; del jugador igual
+			copia may,vector	;copia el score en may y el nick igual
+			copianom pl1,pl3	;copia el nuevo nick en el 1 lugar
+			mov ax,p1			;cambia los tamaños de los nick, 
+			mov bx,p3			;para que despues pueda imprimir las cadenas
+			mov p3,ax
+			mov p1,bx
+			copia vec2,inte
+			copianom pl4,pl2
+			copia inte,vecaux
+			copianom pl2,aux
+			mov ax,p2			;cambia los tamaños de los nick, 
+			mov bx,p3			;para que despues pueda imprimir las cadenas
+			mov p3,ax
+			mov p2,bx
+			copia min,vec2
+			copianom pl3,pl4
+tranqui11:
+ENDM
+
+MAYORG MACRO VECTOR
+	local finasa,copiamay3,copiaint,cmpmay
+	mayorv inte,vector
+	cmp posit,0		;vector es mayor
+	je cmpmay
+	copia min,vector
+	copianom pl3,pl4	;copia el nick
+	mov ax,p4
+	mov p3,ax
+	jmp finasa
+	
+cmpmay:	mayorv may,vector
+		cmp posit,0		;vector es mayor
+		je copiamay3	;cambia los lugar 
+		
+copiaint:	copia sumaux,inte	;copia el 2 lugar en un auxiliar 
+			copianom aux1,pl2	;copia el nickname del 2 lugar en un auxiliar
+			copianom pl2,pl4	;copia el antiguo 1 lugar(nick) en el 2 lugar(nick)
+			mov ax,p2
+			mov px,ax
+			mov ax,p4
+			mov p2,ax
+			mov ax,p3
+			mov px1,ax
+			mov ax,px
+			mov p3,ax
+			copia inte,vector	;copia el score(nuevo) en el 2 lugar
+			copianom aux,pl3	;copia el nick(min) a un auxiliar
+			copia min,sumaux	;copia el score que tenia en 2 lugar a el 3 lugar
+			copianom pl3,aux1	;copia el nick(inte) en el nick(min)
+			jmp finasa
+		
+copiamay3:	copia vecaux,may	;copia may en un auxiliar, y el nick 
+			copianom aux,pl1	; del jugador igual
+			mov ax,p1
+			mov px,ax
+			copia may,vector	;copia el score en may y el nick igual
+			copianom pl1,pl4	;copia el nuevo nick en el 1 lugar
+			mov ax,p4
+			mov p1,ax
+			copia sumaux,inte	;copia el 2 lugar en un auxiliar y lo cambia por el may
+			copianom aux1,pl2	;copia el nickname del 2 lugar en un auxiliar
+			copianom pl2,aux	;copia el antiguo 1 lugar(nick) en el 2 lugar(nick)
+			mov ax,p2
+			mov px1,ax
+			mov ax,px
+			mov p2,ax
+			copia inte,vecaux	;copia el aux del may en el 2 lugar
+			copianom aux,pl3	;copia el nick(min) a un auxiliar
+			mov ax,p3
+			mov px,ax
+			mov ax,px1
+			mov p3,ax
+			copia min,sumaux	;copia el score que tenia en 2 lugar a el 3 lugar
+			copianom pl3,aux1	;copia el nick(inte) en el nick(min)
+FINASA:
+ENDM
+
+;compara vector y veco, si vector es mayor, cambia veco por vector y a veco lo 
+;copia en un vecaux y posit=2, si son iguales posit=1 y si veco es mayor posit=0
+MAYORV MACRO VECTOR,VECO
+	local i13,incre3,compm3,iguales,fin13,mayor
+	LEA BX,VECO		;al
+	LEA SI,VECTOR	;ah
+	mov cx,04
+i13:	MOV AL,[BX]
+	MOV AH,[SI]
+	CMP AL,AH	
+	JE INCRE3
+	JL COMPM3
+	jmp mayor	;veco es mayor
+	loop i13
+	cmp cx,0
+	je iguales
+	jmp fin13
+incre3:	inc bx
+		inc si
+		jmp i13
+COMPM3: 
+		mov posit,2		;veco es menor
+		jmp fin13
+mayor:	mov posit,0		;veco es mayor
+		jmp fin13
+iguales:  mov posit,1	;son iguales
+FIN13:
+ENDM
+
+PINTAR MACRO COLOR
+	PUSH AX
+	PUSH BX
+	PUSH CX
+	PUSH DX
+	MOV AL,COLOR
+	MOV AH, 0CH
+	INT 10H
+	POP DX
+	POP CX
+	POP BX
+	POP AX
+ENDM
+
+PASTO MACRO XI,YI,XF,YF
+	PUSH AX
+	PUSH BX
+	PUSH CX
+	PUSH DX
+	MOV AX,XI
+	MOV BX,YI
+	
+	ADD AX,XF		;HOR
+	ADD BX,YF		;VER
+
+	MOV CX,XI  	;ORIGEN
+	MOV DX,YI
+
+	CALL LINEAV
+	INC AX
+	MOV COLOR,2FH
+SAD: RET
+pop dx
+POP CX
+POP BX
+pop ax
+ENDM
+
+RECTANGULO MACRO L,A,XI,YI,COLOR
+	LOCAL S,S1,FIN
+	PUSH AX
+	PUSH BX
+	PUSH CX
+	PUSH DX
+	MOV AX,XI
+	MOV BX,YI
+	
+	ADD AX,L		;HOR
+	ADD BX,A		;VER
+
+	MOV CX,XI  	;ORIGEN
+	MOV DX,YI
+
+S1:	
+	PINTAR COLOR
+	INC DX
+	CMP DX,BX
+	JE S
+	JMP S1
+
+S:	MOV DX,YI
+	INC CX
+	CMP CX,AX
+	JE FIN
+	PINTAR COLOR
+	JMP S1
+FIN:	
+	POP DX
+	POP CX
+	POP BX
+	POP AX
+ENDM	
+	
+
+PUNTOT MACRO X, Y			 ;Dibuja un punto en la pantalla (En modo grAfico)
+	MOV AH,0CH              ;Func 0C/Int 10h
+    MOV AL,COLOR    ;color 0-15
+    MOV BH,0                ;pagina (0 por default en esta aplicaciOn)
+    MOV CX,Y                ;Columna
+    MOV DX,X                ;Fila
+    INT 10H         ;Interrupt 10h Video functions
+	DEC Y
+	RET
+ENDM
+
