@@ -1,4 +1,4 @@
-## Final project for emsanble | 
+## Final project for assembler  | 
 # Game Dock Hunt
 ---
 
