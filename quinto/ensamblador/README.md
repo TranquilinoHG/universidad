@@ -13,3 +13,7 @@ This project is the result to learning assembler languajes
 ### GAMEOVER
 ![GAMEOVER](https://github.com/TranquilinoHG/universidad/blob/main/quinto/ensamblador/screenshot/fin.jpg)
 
+####
+Credits
+Tranquilino Hernandez Garcia
+
