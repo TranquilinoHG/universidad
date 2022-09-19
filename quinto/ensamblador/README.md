@@ -1,4 +1,4 @@
-## Final project for assembler  | asn 8086
+## Final project for assembler  | asm 8086
 # Game Dock Hunt
 ---
 This project is the result to learning assembler languajes 
